@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "az-track"
+    "name": "angular-5"
   },
   "apps": [
     {
@@ -19,9 +19,12 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+          "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+         "assets/fontawesome-free-5.0.6/svg-with-js/js/fontawesome-all.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
