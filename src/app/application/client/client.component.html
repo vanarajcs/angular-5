@@ -1,0 +1,67 @@
+<form [formGroup]="clientForm" novalidate>
+    <div class="form-group">
+        <label class="center-block" for="companyName"> Company Name:
+          <input class="form-control" id="companyName" formControlName="companyName">
+          <error-required [controls]="clientForm.get('companyName')">
+              The value is Required
+          </error-required>
+          <error-minlength [controls]="clientForm.get('companyName')">
+              Too Short
+          </error-minlength>
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block" for="address"> Address :
+          <input class="form-control" id="address" formControlName="address">
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block" for="email"> Email :
+          <input class="form-control" id="email" formControlName="email">
+          <error-required [controls]="clientForm.get('email')">
+              The value is Required
+          </error-required>
+          <error-email [controls]="clientForm.get('email')">
+              Invalid Emaild
+          </error-email>
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block" for="phoneNumber"> Phone Number :
+          <input class="form-control" id="phoneNumber" formControlName="phoneNumber">
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block" for="country"> Country :
+          <input class="form-control" id="country" formControlName="country">
+        </label>
+    </div>
+    <div formGroupName="contactPerson">
+        <div class="form-group">
+            <label class="center-block" for="name"> Name :
+              <input class="form-control" id="name" formControlName="name">
+            </label>
+        </div>
+
+        <div class="form-group" >
+            <label class="center-block" for="responsible"> Responsible :
+              <input class="form-control" id="responsible" formControlName="responsible">
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label class="center-block" for="phoneNumber"> Phone Number :
+              <input class="form-control" id="phoneNumber" formControlName="phoneNumber">
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label class="center-block" for="email"> Email :
+              <input class="form-control" id="email" formControlName="email">
+            </label>
+        </div>
+    </div>
+</form>
+
+<button (click)="clientAdd()">Submit</button>
+{{ clientForm.value | json }}

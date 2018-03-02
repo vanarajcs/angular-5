@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from './user/user.module';
+import { ClientModule } from './client/client.module';
 
 @NgModule({
   imports : [
-      RouterModule,
       DashboardModule,
-      UserModule
+      UserModule,
+      ClientModule
   ]
 })
 export class ApplicationModule { }
