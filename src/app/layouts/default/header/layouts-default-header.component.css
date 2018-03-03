@@ -1,0 +1,61 @@
+.app-header {
+    background-color: #1e88e5;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0px;
+}
+
+.app-header a {
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.app-header .navbar-brand {
+    font-size: 20px;
+}
+
+.app-header .dropdown-item {
+    color: #212529 !important;
+}
+
+.fixed-margin {
+    float: left;
+    margin-top: 66px;
+    width: 100%;
+}
+
+.fixed-sidebar {
+    position:fixed;
+    height: 100%;
+    width: 16%;
+    padding: 10px;
+    -webkit-box-shadow: 2px 0px 5px 0px rgba(189,182,189,0.3);
+    -moz-box-shadow: 2px 0px 5px 0px rgba(189,182,189,0.3);
+    box-shadow: 2px 0px 5px 0px rgba(189,182,189,0.3);
+}
+
+.sidebar-menus {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+}
+
+.sidebar-menus li {
+    padding-bottom: 10px;
+}
+
+.sidebar-menus li a {
+    padding-bottom: 10px;
+    color : #54667a;
+}
+
+.sidebar-menus li a:hover {
+    text-decoration: none;
+    color: #1e88e5;
+}
+
+.app-content {
+    /*padding: 20px;*/
+    padding : 0px;
+    margin : 0px;
+}

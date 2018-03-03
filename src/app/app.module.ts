@@ -7,6 +7,7 @@ import { LayoutModule } from './layouts/layout.module';
 import { AppComponent } from './app.component';
 import { AdminDashboardComponent } from "./application/dashboard/admin-dashboard/admin-dashboard.component";
 import { PageNotFoundComponent } from './layouts/page-not-found/page-not-found.component';
+import { CustomerComponent } from './customer/customer/customer.component';
 // routes
 const appRoutes: Routes = [
     {
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
