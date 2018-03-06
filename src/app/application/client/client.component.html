@@ -1,74 +1,148 @@
 <div class="page-header">
+    <div class="page-breadcrumbs">
+        <ul class="list-inline">
+            <li class="list-inline-item">
+                <a href="">Home</a>
+            </li>
+            <li class="list-inline-item">
+                /
+            </li>
+            <li class="list-inline-item">
+                <a href="">Client</a>
+            </li>
+        </ul>
+    </div>
+    <div class="page-title">
+        <h1>Client</h1>
+    </div>
+</div>
+<div class="page-content">
+    <form  [formGroup]="clientForm" novalidate>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                      <label for="staticEmail" class="col-md-5 col-form-label">Company Name</label>
+                      <div class="col-md-7">
+                          <input type="text" [ngClass]="{'is-invalid': clientForm.get('companyName').invalid }" class="form-control" formControlName="companyName">
+                          <div class="invalid-feedback">
+                              <error-required [controls]="clientForm.get('companyName')">
+                                    This field is required
+                              </error-required>
+                              <error-minlength [controls]="clientForm.get('companyName')">
+                                    Invalid Min length
+                              </error-minlength>
+                         </div>
+                      </div>
+                </div>
+
+                <div class="form-group row">
+                      <label for="staticEmail" class="col-md-5 col-form-label">Address</label>
+                      <div class="col-md-7">
+                          <input type="text" class="form-control" formControlName="address">
+                      </div>
+                </div>
+
+                <div class="form-group row">
+                      <label for="staticEmail" class="col-md-5 col-form-label">Email</label>
+                      <div class="col-md-7">
+                          <input type="text" class="form-control" formControlName="email">
+                      </div>
+                </div>
+
+                <div class="form-group row">
+                      <label for="staticEmail" class="col-md-5 col-form-label">Phone Number</label>
+                      <div class="col-md-7">
+                          <input type="text" class="form-control" formControlName="phoneNumber">
+                      </div>
+                </div>
+
+                <div class="form-group row">
+                      <label for="staticEmail" class="col-md-5 col-form-label">Country</label>
+                      <div class="col-md-7">
+                          <input type="text" class="form-control" formControlName="country">
+                      </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div formArrayName="contactPerson">
+                    <div *ngFor="let contactPerson of clientForm.get('contactPerson').controls; let i = index;">
+                          <div [formGroupName]="i">
+                              <div class="form-group row">
+                                    <label for="staticEmail" class="col-md-5 col-form-label">Name</label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" formControlName="name">
+                                        <error-required [controls]="contactPerson.get('name')">
+                                            Required Field
+                                        </error-required>
+                                    </div>
+                              </div>
+                              <div class="form-group row">
+                                    <label for="staticEmail" class="col-md-5 col-form-label">Responsible</label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" formControlName="responsible">
+                                    </div>
+                              </div>
+                              <div class="form-group row">
+                                    <label for="staticEmail" class="col-md-5 col-form-label">Phone Number</label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" formControlName="phoneNumber">
+                                    </div>
+                              </div>
+                              <div class="form-group row">
+                                    <label for="staticEmail" class="col-md-5 col-form-label">Email</label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" formControlName="email">
+                                    </div>
+                              </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-12">
+                  <button type="submit" (click)="addClient()" class="btn btn-primary">Add</button>
+                  <button type="submit" (click)="addContactPerson()" class="btn btn-primary">Add More</button>
+            </div>
+        </div>
+    </form>
+
     <div class="row">
         <div class="col-md-12">
-
+            <table class="table">
+                  <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Company Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of clientList; let i = index;">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ client.companyName }}</td>
+                        <td>{{ client.address }}</td>
+                        <td>{{ client.email }}</td>
+                        <td>{{ client.phoneNumber }}</td>
+                        <td>{{ client.country }}</td>
+                        <td>
+                            <div ngbDropdown placement="bottom-right">
+                                <button class="btn btn-primary" id="dropdownConfig" ngbDropdownToggle>Action</button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+                                    <button class="dropdown-item" (click)="editClient(client)">Edit</button>
+                                    <button class="dropdown-item">Another Action</button>
+                                    <button class="dropdown-item">Something else is here</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                  </tbody>
+            </table>
         </div>
     </div>
 </div>
-<form [formGroup]="clientForm" novalidate>
-    <div class="form-group">
-        <label class="center-block" for="companyName"> Company Name:
-          <input class="form-control" id="companyName" formControlName="companyName">
-          <error-required [controls]="clientForm.get('companyName')">
-              The value is Required
-          </error-required>
-          <error-minlength [controls]="clientForm.get('companyName')">
-              Too Short
-          </error-minlength>
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="center-block" for="address"> Address :
-          <input class="form-control" id="address" formControlName="address">
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="center-block" for="email"> Email :
-          <input class="form-control" id="email" formControlName="email">
-          <error-required [controls]="clientForm.get('email')">
-              The value is Required
-          </error-required>
-          <error-email [controls]="clientForm.get('email')">
-              Invalid Emaild
-          </error-email>
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="center-block" for="phoneNumber"> Phone Number :
-          <input class="form-control" id="phoneNumber" formControlName="phoneNumber">
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="center-block" for="country"> Country :
-          <input class="form-control" id="country" formControlName="country">
-        </label>
-    </div>
-    <div formGroupName="contactPerson">
-        <div class="form-group">
-            <label class="center-block" for="name"> Name :
-              <input class="form-control" id="name" formControlName="name">
-            </label>
-        </div>
-
-        <div class="form-group" >
-            <label class="center-block" for="responsible"> Responsible :
-              <input class="form-control" id="responsible" formControlName="responsible">
-            </label>
-        </div>
-
-        <div class="form-group">
-            <label class="center-block" for="phoneNumber"> Phone Number :
-              <input class="form-control" id="phoneNumber" formControlName="phoneNumber">
-            </label>
-        </div>
-
-        <div class="form-group">
-            <label class="center-block" for="email"> Email :
-              <input class="form-control" id="email" formControlName="email">
-            </label>
-        </div>
-    </div>
-</form>
-
-<button (click)="clientAdd()">Submit</button>
-{{ clientForm.value | json }}

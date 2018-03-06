@@ -9,7 +9,8 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "data"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -19,11 +20,11 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-          "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-          "styles.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "styles.css"
       ],
       "scripts": [
-         "assets/fontawesome-free-5.0.6/svg-with-js/js/fontawesome-all.min.js"
+        "assets/fontawesome-free-5.0.6/svg-with-js/js/fontawesome-all.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -58,6 +59,8 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "lintFix": true,
+    "component": {
+    }
   }
 }

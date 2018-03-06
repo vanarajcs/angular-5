@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ClientService } from "./services/client.service"
 import { ClientForm } from './forms/client.form';
 
@@ -10,19 +9,44 @@ import { ClientForm } from './forms/client.form';
 export class ClientComponent implements OnInit {
     clientForm : FormGroup;
 
-    constructor(private clientService : ClientService) {
+    clientList : any[];
+
+    constructor(
+        private clientService : ClientService,
+        private fb : FormBuilder,
+    ) {
         let clientForm = new ClientForm();
         this.clientForm = clientForm.getForm();
     }
 
     ngOnInit() {
-
-    }
-
-    clientAdd() {
-        this.clientService.insert(this.clientForm.value).subscribe(
+        this.clientService.findAll().subscribe(
             data => {
+                this.clientList = data;
             }
         );
+    }
+
+    addContactPerson() : FormGroup {
+        this.clientForm.get("contactPerson").controls.push(
+            this.fb.group({
+                "name" : ["", Validators.required],
+                "responsible" : "",
+                "phoneNumber" : "",
+                "email" : ""
+            })
+        )
+    }
+
+    addClient() {
+        this.clientService.findAll().subscribe(
+            data => {
+                this.clientList.push(data[0]);
+            }
+        );
+    }
+
+    editClient(client : any) {
+        this.clientForm.patchValue(client);
     }
 }

@@ -16,12 +16,14 @@ export class ClientForm {
             "email" : ["", [Validators.required, Validators.email]],
             "phoneNumber" : "",
             "country" : "",
-            "contactPerson" : this.fb.group({
-                "name" : "",
-                "responsible" : "",
-                "phoneNumber" : "",
-                "email" : ""
-            })
+            "contactPerson" : this.fb.array([
+                this.fb.group({
+                    "name" : ["", Validators.required],
+                    "responsible" : "",
+                    "phoneNumber" : "",
+                    "email" : ""
+                })
+            ])
         });
     }
 }
